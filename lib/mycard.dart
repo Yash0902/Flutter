@@ -5,31 +5,27 @@ class mycard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:AppBar(
-           title: Text("Flutter Practice"),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text(
+          "Flutter Practice:-",
+          style: TextStyle(color: Colors.white),
         ),
-        body: Center(
-          child: Card(
-            color: Colors.blue[100],
-            shadowColor: Colors.black,
-            elevation: 10,
-            margin: EdgeInsets.all(20),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Flutter Card", style: TextStyle(fontSize: 20)),
-                  SizedBox(height: 10),
-                  Text("This card has custom color, margin, and shadow."),
-                ],
-              ),
-            ),
-          )
-        ),
+      ),
+        body:Container(
+          width: double.infinity,
+          height: 100,
+           margin:const EdgeInsets.all(20),
+           padding: const EdgeInsets.all(10),
+
+          alignment: Alignment.bottomCenter,
+          decoration: BoxDecoration(
+             color: Colors.green,
+
+
+           ),
+             child:Text("Hello! I am inside a container!",style: TextStyle(fontSize: 20,color: Colors.white),),
+        )
 
     );
   }
