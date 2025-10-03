@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class mycard extends StatelessWidget {
   const mycard({super.key});
 
@@ -12,21 +13,57 @@ class mycard extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-        body:Container(
-          width: double.infinity,
-          height: 100,
-           margin:const EdgeInsets.all(20),
-           padding: const EdgeInsets.all(10),
+      body: Container(
+        width: double.infinity,
+        height: 200,
+        margin: const EdgeInsets.all(20),
+       
 
-          alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-             color: Colors.green,
+        alignment: Alignment.bottomCenter,
+        decoration: BoxDecoration(
+          color: Colors.green.shade50,
+           // gradient: LinearGradient(
+           //      colors: [Colors.red,Colors.yellow],
+           //   begin: Alignment.topRight,
+           //   end: Alignment.bottomRight,
+           //   stops: [0.4,0.7]
+           //  )
+        ),
+        child:Row(
+            children: [
+               Expanded(
+                   flex: 1,
+                   child:Container(
+                       height:double.infinity,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(image:NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa4oM937hHe9rMkWobp_O0UeV-AzYMiG1mKg&s'),fit: BoxFit.cover),
+                        ),
+                     
+                       child:Text("Text On Background Image",style:TextStyle(
+                            fontSize:30,
+                            fontWeight:FontWeight.w800,
+                        )),
+                   )
+               ),
+              Expanded(
+                  flex: 1,
+                  child:Container(
+                    height:double.infinity,
 
+                    decoration: BoxDecoration(
+                        gradient:LinearGradient(
+                          colors: [Colors.red,Colors.yellow],
+                          begin:Alignment.bottomLeft,
+                          end: Alignment.topCenter,
+                        )
+                    ),
 
-           ),
-             child:Text("Hello! I am inside a container!",style: TextStyle(fontSize: 20,color: Colors.white),),
+                  )
+              )
+            ],
         )
 
+      ),
     );
   }
 }

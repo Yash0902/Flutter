@@ -127,9 +127,9 @@ class container extends StatelessWidget {
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.red, Colors.yellow],
-                    ),
+                    // gradient: LinearGradient(
+                    //   colors: [Colors.red, Colors.yellow],
+                    // ),
                     borderRadius: BorderRadius.all(Radius.circular(100)),
                     boxShadow: [
                       BoxShadow(
