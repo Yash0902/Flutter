@@ -192,11 +192,28 @@ class textformfield extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(25),
         child: Form(
-
+          autovalidateMode:AutovalidateMode.onUserInteraction,
           key: _formKey,
           child: Column(
             children: [
+
               TextFormField(
+                enableInteractiveSelection: true,
+                onTap:(){
+                    print("helllo");
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Email is required";
+                  } else if (!value.contains('@')) {
+                    return "Enter a valid email";
+                  }
+                  return null;
+                },
+                showCursor: true,
+
+                autocorrect: true,
+                smartDashesType: SmartDashesType.enabled,
 
                 style: TextStyle(
                    fontSize: 25,
@@ -205,7 +222,7 @@ class textformfield extends StatelessWidget {
                 onSaved: (val){
                     username = val;
                 },
-                validator: (val) => val!.isEmpty ? "Cannot be empty" : null,
+
                 decoration: InputDecoration(
 
                   errorStyle: TextStyle(
@@ -215,9 +232,11 @@ class textformfield extends StatelessWidget {
                   errorText:null,
 
                   errorBorder:OutlineInputBorder(
-                     borderSide: BorderSide(color: Colors.red,width:2)
+                     borderSide: BorderSide(color: Colors.red,width:2),
+
                   ),
                   contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+
 
                   prefixIcon: Icon(Icons.person),
 
@@ -226,12 +245,18 @@ class textformfield extends StatelessWidget {
                   
 
                   border:OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black,width:2)
+                      borderSide: BorderSide(color: Colors.black,width:2),
+                      borderRadius: BorderRadius.circular(20),
                   ),
 
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black,width: 3)
+                      borderSide: BorderSide(color: Colors.black,width: 3),
+                    borderRadius: BorderRadius.circular(20),
                   ),
+                  
+                  icon: IconButton(onPressed:(){
+                       print("add");
+                  }, icon:Icon(Icons.add),iconSize: 30,),
 
                   labelText: "name",
 
