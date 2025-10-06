@@ -364,8 +364,8 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
+
 class listview extends StatefulWidget {
   const listview({super.key});
 
@@ -374,22 +374,41 @@ class listview extends StatefulWidget {
 }
 
 class _listviewState extends State<listview> {
+  bool? isOn = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-         body: ListView.custom(
-           childrenDelegate: SliverChildBuilderDelegate(
-                  // findChildIndexCallback: ,
-                 (BuildContext context, int index) {
-                    print("hellow $index");
-               return ListTile(
-                 leading: Icon(Icons.person),
-                 title: Text('Item $index'),
-               );
-             },
-             childCount: 50, // Number of items
-           ),
-         ),
+      body: ListView.custom(
+        childrenDelegate: SliverChildBuilderDelegate(
+          // findChildIndexCallback: ,
+          // addAutomaticKeepAlives: true,
+          // addRepaintBoundaries: true,
+          // addSemanticIndexes: true,
+          // semanticIndexOffset: 0,
+          (BuildContext context, int index) {
+            print("hellow $index");
+            return Container(
+              width: double.infinity,
+              height: 100,
+              child: Row(
+                children: [
+                  Text("$index"),
+
+                  Switch(
+                    value: isOn ?? false,
+                    onChanged: (bool value) {
+                      setState(() {
+                         isOn = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+          childCount: 10, // Number of items
+        ),
+      ),
     );
   }
 }

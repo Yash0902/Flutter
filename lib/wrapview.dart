@@ -10,6 +10,7 @@ class _wrapviewState extends State<wrapview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
        appBar: AppBar(
           title:Text("Wrapview")
        ),
