@@ -21,12 +21,15 @@ class _gridviewState extends State<gridview> {
     return Scaffold(
       appBar: AppBar(title: Text("ListView Property Demo")),
       body: ListView.builder(
+
         itemCount: 50,
         // 👇 Try changing these values to see the difference
         // addAutomaticKeepAlives: false, // maintain state when off-screen
         // addRepaintBoundaries: true,   // improve performance
         // addSemanticIndexes: true,     // for accessibility
         // cacheExtent: 300,             // pre-load ahead items (300px)
+
+
 
         itemBuilder: (context, index) {
           print("Building item $index"); // console se pata chalega rebuild ho raha ya nahi
