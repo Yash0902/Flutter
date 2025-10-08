@@ -145,8 +145,18 @@ class _drawerState extends State<drawer> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: Text("Drawer")),
+      appBar: AppBar(
+          automaticallyImplyLeading:false,
+          title: Text("Drawer")),
       drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Text("Left Drawer")),
+            ListTile(title: Text("Item 1")),
+          ],
+        ),
+      ),
+      endDrawer: Drawer(
         width: 325,
         child: Container(
           width: double.infinity,
@@ -207,9 +217,28 @@ class _drawerState extends State<drawer> {
           ),
         ),
       ),
-      // body: Center(
-      //   child:_widgetOptions.elementAt(_selectedIndex),
-      // ),
+
+
+      body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      _scaffoldKey.currentState?.openDrawer(); // Open left drawer
+                    },
+                    child: Text("Open Left Drawer"),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      _scaffoldKey.currentState?.openEndDrawer(); // Open right drawer
+                    },
+                    child: Text("Open Right Drawer"),
+                  ),
+                ],
+              ),
+            ),
       //
 
       // floatingActionButton: FloatingActionButton(
@@ -333,7 +362,6 @@ class _drawerState extends State<drawer> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               backgroundColor: Colors.red,
-              
               content: Text("Hello! This is a SnackBar."),
               duration: Duration(seconds: 2),
             ),
