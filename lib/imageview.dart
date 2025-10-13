@@ -62,13 +62,13 @@ class _imageviewState extends State<imageview> {
             width: 100,
             height: 100,
             child: Image.network(
-              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                return frame == null ? CircularProgressIndicator() : child;
-              },
-              // loadingBuilder: (context, child, progress) {
-              //   if (progress == null) return child;
-              //   return CircularProgressIndicator();
+              // frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+              //   return frame == null ? CircularProgressIndicator() : child;
               // },
+              loadingBuilder: (context, child, progress) {
+                if (progress == null) return child;
+                return CircularProgressIndicator();
+              },
 
               // errorBuilder: (context, error, stackTrace) {
               //   return Icon(Icons.error);
@@ -96,10 +96,15 @@ class _imageviewState extends State<imageview> {
             width: 100,
              height: 100,
              child: CachedNetworkImage(
+               fadeInDuration: Duration(seconds:2),
+
                fadeInCurve: Curves.easeIn,
                // fadeInDuration: const Duration(milliseconds: 500),
                // fadeOutDuration: const Duration(milliseconds: 1000),
                filterQuality: FilterQuality.high,
+               useOldImageOnUrlChange: true,
+               memCacheHeight: 50,
+               memCacheWidth: 50,
                errorWidget: (context, url, error) => const Icon(Icons.error, size: 50, color: Colors.red),
                progressIndicatorBuilder: (context, url, downloadProgress) =>
                    CircularProgressIndicator(value: downloadProgress.progress),

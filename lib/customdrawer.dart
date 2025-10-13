@@ -3,10 +3,10 @@ class customdrawer extends StatefulWidget {
   const customdrawer({super.key});
 
   @override
-  State<customdrawer> createState() => _customdrawerState();
+  _customdrawerState createState() => _customdrawerState();
 }
 
-class _customdrawerState extends State<customdrawer> {
+class _customdrawerState extends State<customdrawer>  {
   bool _isDrawerOpen = false;
   @override
   Widget build(BuildContext context) {
