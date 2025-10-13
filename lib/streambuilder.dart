@@ -146,3 +146,66 @@
 //     );
 //   }
 // }
+
+import 'dart:async';
+import 'package:flutter/material.dart';
+
+class StreamClock extends StatefulWidget {
+  const StreamClock({super.key});
+
+  @override
+  State<StreamClock> createState() => _StreamClockState();
+}
+
+class _StreamClockState extends State<StreamClock> {
+  late final Stream<DateTime> _clockStream;
+
+  @override
+  void initState() {
+    super.initState();
+    // Create a Stream that emits current time every second
+    _clockStream = Stream.periodic(
+      Duration(seconds: 1),
+          (_) => DateTime.now(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("⏰ StreamBuilder Clock")),
+      body: Center(
+        child: StreamBuilder<DateTime>(
+          stream: _clockStream,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+
+            // Extract current time
+            final time = snapshot.data!;
+            final formattedTime =
+                "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}";
+
+            return Text(
+              formattedTime,
+              style: TextStyle(
+                fontSize: 60,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueAccent,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: StreamClock(),
+  ));
+}
+
