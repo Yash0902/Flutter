@@ -9,7 +9,7 @@ class Pageviewexample extends StatefulWidget {
 
 class _PageviewexampleState extends State<Pageviewexample> {
 
-  PageController _controller = PageController(initialPage: 0);
+  PageController _controller = PageController(initialPage: 0, viewportFraction: .5);
   bool _isHorizontal = true;
   bool _pageSnapping = true;
   bool _padEnds = true;
