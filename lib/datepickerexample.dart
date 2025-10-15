@@ -1,32 +1,14 @@
 import 'package:flutter/material.dart';
 
-// The main function — entry point of the app
-void main() {
-  runApp(const MyApp());
-}
-
-// Root widget of the app
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false, // removes debug banner
-      home: const DatePickerScreen(), // calls our DatePicker screen
-    );
-  }
-}
-
 // A stateful widget because we need to update UI when date changes
-class DatePickerScreen extends StatefulWidget {
-  const DatePickerScreen({super.key});
+class DatePickerexample extends StatefulWidget {
+  const DatePickerexample({super.key});
 
   @override
-  State<DatePickerScreen> createState() => _DatePickerScreenState();
+  State<DatePickerexample> createState() => _DatePickerScreenState();
 }
 
-class _DatePickerScreenState extends State<DatePickerScreen> {
+class _DatePickerScreenState extends State<DatePickerexample> {
   DateTime? selectedDate;
 
   Future<void> _pickDate(BuildContext context) async {
@@ -39,38 +21,70 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
       cancelText: 'Cancel',
       confirmText: 'OK',
       initialDatePickerMode: DatePickerMode.day,
+      fieldHintText: "yash",
+      // barrierColor: Colors.red,
+
+      // used to disable the date
+      selectableDayPredicate: (DateTime date) {
+        if (date.weekday == DateTime.sunday ||
+            date.weekday == DateTime.saturday) {
+          return false;
+        }
+        return true;
+      },
       builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            datePickerTheme: DatePickerThemeData(
-              dayBackgroundColor: MaterialStateProperty.resolveWith<Color>((
-                states,
-              ) {
-                if (states.contains(MaterialState.selected)) {
-                  return Colors.deepOrange;
-                }
-                return Colors.green;
-              }),
-              todayBackgroundColor: MaterialStateProperty.resolveWith<Color>((
-                states,
-              ) {
-                return Colors.red;
-              }),
-
-              dividerColor: Colors.blue,
-
+        return Center(
+          child: SizedBox(
+            width: 400,  // set your desired width
+            height: 500, // set your desired height
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                datePickerTheme: DatePickerThemeData(
+                  dayOverlayColor: MaterialStateProperty.all(
+                    Colors.tealAccent.withOpacity(0.2),
+                  ),
+                  dayBackgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (states) {
+                      if (states.contains(MaterialState.selected)) {
+                        return Colors.teal;
+                      } else if (states.contains(MaterialState.disabled)) {
+                        return Colors.grey.shade300;
+                      }
+                      return Colors.transparent;
+                    },
+                  ),
+                  todayBackgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (states) => Colors.purpleAccent,
+                  ),
+                  dividerColor: Colors.blue,
+                ),
+              ),
+              child: child!,
             ),
           ),
-          child: child!,
         );
       },
     );
 
     if (picked != null && picked != selectedDate) {
+
       setState(() {
         selectedDate = picked;
       });
     }
+  }
+
+  Widget _dayBuilder(BuildContext context, DateTime date, DateTime focusedDay) {
+    final isSaturday = date.weekday == DateTime.saturday;
+    return Center(
+      child: Text(
+        '${date.day}',
+        style: TextStyle(
+          color: isSaturday ? Colors.red : Colors.black,
+          fontWeight: isSaturday ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+    );
   }
 
   @override
@@ -86,7 +100,7 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
           children: [
             Text(
               selectedDate == null
-                  ? 'No date selected'
+                  ? '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}'
                   : 'Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
               style: const TextStyle(fontSize: 18),
             ),

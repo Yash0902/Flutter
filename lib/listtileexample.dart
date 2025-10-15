@@ -247,6 +247,10 @@ class _ListtileexampleState extends State<Listtileexample> {
           return Padding(
             padding: EdgeInsets.all(2),
             child: ListTile(
+              onTap: (){
+
+
+              },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

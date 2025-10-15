@@ -1,9 +1,11 @@
 import 'package:container_widget/Alertboxexample.dart';
 import 'package:container_widget/Navigationbarexample.dart';
+import 'package:container_widget/animationexample.dart';
 import 'package:container_widget/bottomsheetexample.dart';
 import 'package:container_widget/buttonview.dart';
 import 'package:container_widget/datepickerexample.dart';
 import 'package:container_widget/gestureDetector.dart';
+import 'package:container_widget/imagepickerexample.dart';
 import 'package:container_widget/imageview.dart';
 import 'package:container_widget/inkwell.dart';
 import 'package:container_widget/lifecycle.dart';

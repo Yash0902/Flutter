@@ -20,7 +20,6 @@ class _AlertboxexampleState extends State<Alertboxexample> {
               context: context,
               builder: (context) {
                 return AlertDialog(
-
                   icon: const Icon(Icons.warning, size: 40),
                   iconPadding: const EdgeInsets.all(16),
                   iconColor: Colors.red,

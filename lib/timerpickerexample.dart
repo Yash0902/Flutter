@@ -35,6 +35,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+
     );
 
     if (picked != null) {
@@ -48,20 +49,150 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
   Future<void> _pickTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay.now(), // current time as default
+      initialTime: TimeOfDay.now(),
+
       builder: (context, child) {
         // Customize theme
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(
-              primary: Colors.deepPurple, // header background
-              onPrimary: Colors.white, // header text color
-              onSurface: Colors.black, // body text color
-            ),
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.deepPurple, // button color
+            timePickerTheme: TimePickerThemeData(
+              //
+              // shape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.circular(30), // Adjust corner radius
+              //   side: const BorderSide(color: Colors.teal, width: 2), // Optional border
+              // ),
+
+
+              shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+                side: const BorderSide(color: Colors.teal, width: 2),
               ),
+
+
+              // shape: const StadiumBorder(
+              //   side: BorderSide(color: Colors.teal, width: 2),
+              // ),
+
+
+              // Shape of hour/minute selector
+              // hourMinuteShape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.all(Radius.circular(10)),
+              // ),
+
+              hourMinuteShape:BeveledRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: const BorderSide(color: Colors.teal, width: 2),
+              ),
+
+
+              backgroundColor: Colors.blue.shade200,
+
+              cancelButtonStyle: ButtonStyle(
+                foregroundColor: MaterialStatePropertyAll(Colors.black),
+              ),
+
+              confirmButtonStyle: ButtonStyle(
+                foregroundColor: MaterialStatePropertyAll(Colors.black),
+              ),
+
+              // Border of AM/PM toggle
+              dayPeriodBorderSide: BorderSide(color: Colors.blue, width: 2),
+
+              // Background color of AM/PM toggle
+              dayPeriodColor: Colors.blue,
+
+              // Shape of the AM/PM toggle
+              // dayPeriodShape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.all(Radius.circular(20)),
+              // ),
+
+              dayPeriodShape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side: const BorderSide(color: Colors.teal, width: 2),
+              ),
+
+              // Text color of AM/PM
+              dayPeriodTextColor: Colors.black,
+
+              // Text style of AM/PM
+              dayPeriodTextStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+
+              // Background color of dial
+              dialBackgroundColor: Colors.blue.shade50,
+
+              // Color of dial hand
+              dialHandColor: Colors.blue,
+
+              // Text color of numbers on dial
+              dialTextColor: Colors.black,
+
+              // Text style of numbers on dial
+              dialTextStyle: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+
+              // Elevation of the time picker dialog
+              elevation: 8,
+
+              // Color of icon to switch entry mode (input/manual)
+              entryModeIconColor: Colors.black,
+
+              // Text style for help text (like "SELECT TIME")
+              helpTextStyle: TextStyle(color: Colors.black, fontSize: 16),
+
+              // Background color for hour/minute selector
+              hourMinuteColor: Colors.pinkAccent,
+
+
+
+
+              // Text color for hour/minute selector
+              hourMinuteTextColor: Colors.black,
+
+              // Text style for hour/minute numbers
+              hourMinuteTextStyle: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+
+              timeSelectorSeparatorColor:
+                  MaterialStateProperty.resolveWith<Color?>((states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return Colors.grey; // disabled state
+                    }
+                    if (states.contains(MaterialState.selected)) {
+                      return Colors.teal; // when selected/focused
+                    }
+                    return Colors.deepOrange; // default color
+                  }),
+
+
+
+
+              timeSelectorSeparatorTextStyle:
+                  MaterialStateProperty.resolveWith<TextStyle?>((states) {
+                    if (states.contains(MaterialState.selected)) {
+
+                      return const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      );
+                    }
+
+                    return const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange,
+                    );
+                  }),
+
+
+
             ),
           ),
           child: child!,
@@ -114,7 +245,9 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
             // Button to pick date
             ElevatedButton(
               onPressed: () => _pickDate(context),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepPurple,
+              ),
               child: const Text("Pick Date"),
             ),
             const SizedBox(height: 10),
@@ -122,7 +255,9 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
             // Button to pick time
             ElevatedButton(
               onPressed: () => _pickTime(context),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepPurple,
+              ),
               child: const Text("Pick Time"),
             ),
           ],
