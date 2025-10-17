@@ -10,7 +10,6 @@ class Popupmenuexample extends StatefulWidget {
 class _PopupmenuexampleState extends State<Popupmenuexample> {
   var _selected;
   void _showDialog(BuildContext context) {
-    print(context);
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -37,10 +36,11 @@ class _PopupmenuexampleState extends State<Popupmenuexample> {
         title: Text("PopUp Menu Example"),
         actions: [
           PopupMenuButton(
+            initialValue: _selected,
             // color: Colors.blue,
-            // onSelected: (value){
-            //     print(value);
-            // },
+            onSelected: (value){
+               _selected = value;
+            },
             //
             // onOpened: (){
             //     print("onopen");
@@ -59,16 +59,48 @@ class _PopupmenuexampleState extends State<Popupmenuexample> {
             ),
 
             offset: const Offset(0, 40),
+            color: Colors.blue,
 
             constraints: const BoxConstraints(maxHeight: 300, minWidth: 150),
 
-            clipBehavior: Clip.none,
+            // clipBehavior: Clip.none,
+            // position: PopupMenuPosition.over,
             itemBuilder: (context) => [
               PopupMenuItem(
                 onTap: () {
                   _showDialog(context);
                 },
                 value: 1,
+
+                child: Row(
+                  children: [
+                    const Icon(Icons.star),
+                    SizedBox(width: 10),
+                    const Text("Get The App"),
+                  ],
+                ),
+              ),
+
+              PopupMenuItem(
+                onTap: () {
+                  _showDialog(context);
+                },
+                value: 2,
+
+                child: Row(
+                  children: [
+                    const Icon(Icons.star),
+                    SizedBox(width: 10),
+                    const Text("Get The App"),
+                  ],
+                ),
+              ),
+
+              PopupMenuItem(
+                onTap: () {
+                  _showDialog(context);
+                },
+                value: 3,
 
                 child: Row(
                   children: [

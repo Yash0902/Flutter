@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.blue),
       title: "Listview",
       debugShowCheckedModeBanner: false,
-      home:Popupmenuexample(),
+      home:SplashScreen(),
     );
   }
 }
