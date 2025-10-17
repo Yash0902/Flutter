@@ -56,7 +56,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             timePickerTheme: TimePickerThemeData(
-              //
+
               // shape: RoundedRectangleBorder(
               //   borderRadius: BorderRadius.circular(30), // Adjust corner radius
               //   side: const BorderSide(color: Colors.teal, width: 2), // Optional border
@@ -96,7 +96,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
               ),
 
               // Border of AM/PM toggle
-              dayPeriodBorderSide: BorderSide(color: Colors.blue, width: 2),
+              dayPeriodBorderSide: BorderSide(color: Colors.teal, width: 2),
 
               // Background color of AM/PM toggle
               dayPeriodColor: Colors.blue,
@@ -108,8 +108,9 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
 
               dayPeriodShape: BeveledRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: const BorderSide(color: Colors.teal, width: 2),
+
               ),
+
 
               // Text color of AM/PM
               dayPeriodTextColor: Colors.black,
@@ -124,7 +125,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
               dialBackgroundColor: Colors.blue.shade50,
 
               // Color of dial hand
-              dialHandColor: Colors.blue,
+              dialHandColor: Colors.teal,
 
               // Text color of numbers on dial
               dialTextColor: Colors.black,
@@ -145,7 +146,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
               helpTextStyle: TextStyle(color: Colors.black, fontSize: 16),
 
               // Background color for hour/minute selector
-              hourMinuteColor: Colors.pinkAccent,
+              hourMinuteColor: Colors.blue.shade100,
 
 
 

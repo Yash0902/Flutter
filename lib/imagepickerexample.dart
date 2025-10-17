@@ -129,6 +129,7 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
+
         children: [
           FloatingActionButton.extended(
             heroTag: "camera",
@@ -136,7 +137,9 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
             label: const Text("Camera"),
             icon: const Icon(Icons.camera_alt),
           ),
+
           const SizedBox(height: 10),
+
           FloatingActionButton.extended(
             heroTag: "gallery",
             onPressed: () => _pickImage(ImageSource.gallery),

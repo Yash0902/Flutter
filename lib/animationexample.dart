@@ -16,6 +16,19 @@ class _AnimationexampleState extends State<Animationexample> {
       appBar: AppBar(title: Text("Animation Example")),
       body: Column(
         children: [
+
+          TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0, end: 300),
+            duration: Duration(seconds: 2),
+            curve: Curves.easeInOut,
+            builder: (context, value, child) {
+              return Container(
+                width: value,
+                height: value,
+                color: Colors.red,
+              );
+            },
+          )
           // GestureDetector(
           //   onTap: () {
           //      setState(() {
@@ -53,42 +66,45 @@ class _AnimationexampleState extends State<Animationexample> {
           //   ),
           // ),
 
-          GestureDetector(
-            onTap: () {
-              // Toggle between first and second child
-              setState(() {
-                _showFirst = !_showFirst;
-              });
-            },
-            child: AnimatedCrossFade(
-              firstChild: Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-                alignment: Alignment.center,
-                child: Text(
-                  'First',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              secondChild: Container(
-                color: Colors.blue,
-                width: 200,
-                height: 200,
-                alignment: Alignment.center,
-                child: Text(
-                  'Second',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              crossFadeState:
-              _showFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-              duration: Duration(seconds: 1),
-              firstCurve: Curves.easeIn,
-              secondCurve: Curves.easeOut,
-              sizeCurve: Curves.easeInOut,
-            ),
-          ),
+
+
+
+          // GestureDetector(
+          //   onTap: () {
+          //     // Toggle between first and second child
+          //     setState(() {
+          //       _showFirst = !_showFirst;
+          //     });
+          //   },
+          //   child: AnimatedCrossFade(
+          //     firstChild: Container(
+          //       color: Colors.red,
+          //       width: 100,
+          //       height: 100,
+          //       alignment: Alignment.center,
+          //       child: Text(
+          //         'First',
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //     ),
+          //     secondChild: Container(
+          //       color: Colors.blue,
+          //       width: 200,
+          //       height: 200,
+          //       alignment: Alignment.center,
+          //       child: Text(
+          //         'Second',
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //     ),
+          //     crossFadeState:
+          //     _showFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+          //     duration: Duration(seconds: 1),
+          //     firstCurve: Curves.easeIn,
+          //     secondCurve: Curves.easeOut,
+          //     sizeCurve: Curves.easeInOut,
+          //   ),
+          // ),
 
 
         ],
